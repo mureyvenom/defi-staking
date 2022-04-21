@@ -17,6 +17,7 @@
     "chai-bignumber": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
     "react-scripts": "5.0.1",
     "solc": "^0.8.13",
     "truffle": "^5.5.10",
@@ -24,7 +25,7 @@
     "web3": "^1.7.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "GENERATE_SOURCEMAP=false react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
@@ -48,18 +49,18 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24",
     "assert": "^2.0.0",
+    "autoprefixer": "^10.4.4",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
+    "postcss": "^8.4.12",
     "process": "^0.11.10",
     "react-app-rewired": "^2.2.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "tailwindcss": "^3.0.24",
     "url": "^0.11.0"
   }
 }
