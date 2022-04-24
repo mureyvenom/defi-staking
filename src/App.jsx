@@ -5,6 +5,7 @@ import Tether from "./truffle_abis/Tether.json";
 import RWD from "./truffle_abis/RWD.json";
 import DecentralBank from "./truffle_abis/DecentralBank.json";
 import { BiLoaderAlt } from "react-icons/bi";
+import Main from "./components/Main";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -88,6 +89,31 @@ function App() {
     }
   };
 
+  const stakeTokens = (amount) => {
+    setLoading(true);
+    tether.methods
+      .approve(decentralBank._address, amount)
+      .send({ from: account })
+      .on("transactionHash", (hash) => {
+        decentralBank.methods
+          .depositTokens(amount)
+          .send({ from: account })
+          .on("transactionHash", (hash) => {
+            loadBlockchainData();
+          });
+      });
+  };
+
+  const unstakeTokens = () => {
+    setLoading(true);
+    decentralBank.methods
+      .unstakeTokens()
+      .send({ from: account })
+      .on("transactionHash", (hash) => {
+        loadBlockchainData();
+      });
+  };
+
   useEffect(() => {
     return async () => {
       await loadWeb3();
@@ -104,6 +130,17 @@ function App() {
           <BiLoaderAlt className="animate-spin" size={40} />
         </div>
       )}
+      <div className="pt-5">
+        <div className="md:max-w-[600px] w-[80%] mx-auto">
+          <Main
+            rwdBalance={rwdBalance}
+            tetherBalance={tetherBalance}
+            stakingBalance={stakingBalance}
+            stakeTokens={stakeTokens}
+            unstakeTokens={unstakeTokens}
+          />
+        </div>
+      </div>
     </div>
   );
 }
