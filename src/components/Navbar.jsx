@@ -7,7 +7,7 @@ const Navbar = ({ account }) => {
       <div className="flex gap-x-4">
         <a href="/">Home</a>
         <a href="/">Stake</a>
-        <button>Account Number: {account}</button>
+        <button>Address: {account}</button>
       </div>
     </nav>
   );

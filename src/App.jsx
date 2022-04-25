@@ -16,6 +16,7 @@ function App() {
   const [rwdBalance, setRwdBalance] = useState("0");
   const [stakingBalance, setStakingBalance] = useState("0");
   const [loading, setLoading] = useState(false);
+  const [tokensIssued, setTokensIssued] = useState(false);
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
@@ -114,6 +115,21 @@ function App() {
       });
   };
 
+  // const issueTokens = () => {
+  //   if (!tokensIssued) {
+  //     setLoading(true);
+  //     decentralBank.methods
+  //       .issueTokens()
+  //       .send({ from: account })
+  //       .on("transactionHash", (hash) => {
+  //         // unstakeTokens();
+  //         // setTokensIssued(true);
+  //         // unstakeTokens();
+  //         setLoading(false)
+  //       });
+  //   }
+  // };
+
   useEffect(() => {
     return async () => {
       await loadWeb3();
@@ -138,6 +154,7 @@ function App() {
             stakingBalance={stakingBalance}
             stakeTokens={stakeTokens}
             unstakeTokens={unstakeTokens}
+            // issueTokens={issueTokens}
           />
         </div>
       </div>

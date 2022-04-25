@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Airdrop from "./Airdrop";
 
 const Main = ({
   stakingBalance,
@@ -6,8 +7,16 @@ const Main = ({
   rwdBalance,
   stakeTokens,
   unstakeTokens,
+  issueTokens,
 }) => {
   const [stakeAmount, setStakeAmount] = useState("0");
+  const [countStatus, setCountStatus] = useState(false);
+
+  useEffect(() => {
+    if (stakingBalance > "50000000000000000000") {
+      setCountStatus(true);
+    }
+  }, [stakingBalance]);
 
   return (
     <div>
@@ -68,9 +77,9 @@ const Main = ({
             Withdraw
           </button>
         </div>
-        <div className="flex items-center justify-center py-3 px-5 border-[1px] border-gray-700 mt-4">
-          <div>AIRDROP</div>
-        </div>
+        {countStatus && (
+          <Airdrop finishedFunction={issueTokens} initialSeconds={30} />
+        )}
       </div>
     </div>
   );
